@@ -21,21 +21,27 @@ export const Header: FC = memo(() => {
           align="center"
           as="a"
           mr={8}
-          _hover={{ cursor: 'pointer' }}
+          _hover={{ cursor: 'pointer', color: 'gray.300' }}
           onClick={() => navigate('/')}
         >
           <Heading as="h1" fontSize={{ base: 'md', md: 'lg' }}>
             Matching App
           </Heading>
         </Flex>
-        <Flex align="center" fontSize="sm" flexGrow={2} display={{ base: 'none', md: 'flex' }}>
-          <Box pr={4} onClick={() => navigate('/')}>
+        <Flex
+          align="center"
+          fontSize="sm"
+          flexGrow={2}
+          display={{ base: 'none', md: 'flex' }}
+          _hover={{ cursor: 'pointer' }}
+        >
+          <Box pr={4} onClick={() => navigate('/')} _hover={{ color: 'gray.300' }}>
             HOME
           </Box>
-          <Box pr={4} onClick={() => navigate('/search')}>
+          <Box pr={4} onClick={() => navigate('/search')} _hover={{ color: 'gray.300' }}>
             SEARCH
           </Box>
-          <Box pr={4} onClick={() => navigate('/myProfile')}>
+          <Box pr={4} onClick={() => navigate('/myProfile')} _hover={{ color: 'gray.300' }}>
             MyProfile
           </Box>
         </Flex>

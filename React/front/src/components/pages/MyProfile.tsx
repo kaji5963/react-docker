@@ -1,14 +1,14 @@
-import { FC, memo } from 'react';
-import { Link } from 'react-router-dom';
-import { useMessage } from '../../hooks/useMessage';
+import { FC, memo, useEffect } from 'react';
+import { useGetAllUsers } from '../../hooks/useGetAllUsers';
+import { LoadingSpinner } from '../molecules/LoadingSpinner';
+import { UserProfileCard } from '../Organisms/user/UserProfileCard';
 
 export const MyProfile: FC = memo(() => {
-  const { showMessage } = useMessage();
-  return (
-    <div>
-      <p>MyProfile</p>
-      <button onClick={() => showMessage({ title: 'test', status: 'success' })}>button</button>
-      {/* <Link to="/">HOMEへ戻る</Link> */}
-    </div>
-  );
+  const { getUsers, users, loading } = useGetAllUsers();
+
+  useEffect(() => {
+    getUsers();
+  }, []);
+
+  return <>{loading ? <LoadingSpinner /> : <UserProfileCard users={users} />}</>;
 });

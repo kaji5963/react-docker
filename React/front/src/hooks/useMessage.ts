@@ -6,6 +6,7 @@ type Props = {
   status: 'success' | 'error' | 'info' | 'warning';
 };
 
+//アクションの際にtoastMessageを表示する
 export const useMessage = () => {
   const toast = useToast();
 

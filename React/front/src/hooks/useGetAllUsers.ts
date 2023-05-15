@@ -4,6 +4,7 @@ import { useMessage } from './useMessage';
 
 import axios from 'axios';
 
+//DBから全ユーザーを取得する
 export const useGetAllUsers = () => {
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState<boolean>(false);

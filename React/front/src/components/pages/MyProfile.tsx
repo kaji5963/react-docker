@@ -4,11 +4,7 @@ import { LoadingSpinner } from '../molecules/LoadingSpinner';
 import { UserProfileCard } from '../Organisms/user/UserProfileCard';
 
 export const MyProfile: FC = memo(() => {
-  const { getUsers, users, loading } = useGetAllUsers();
+  const { loading } = useGetAllUsers();
 
-  useEffect(() => {
-    getUsers();
-  }, []);
-
-  return <>{loading ? <LoadingSpinner /> : <UserProfileCard users={users} />}</>;
+  return <>{loading ? <LoadingSpinner /> : <UserProfileCard />}</>;
 });

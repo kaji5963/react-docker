@@ -21,7 +21,7 @@ export const useLogin = () => {
       .then((res) => {
         showMessage({ title: 'ログインに成功しました', status: 'success' });
         setAuthUser(res.data);
-        navigate('/');
+        navigate('/match');
       })
       .catch(() => {
         showMessage({ title: 'ログインできませんでした', status: 'error' });

@@ -13,7 +13,7 @@ export const UserProfileCard: FC = memo(() => {
       <Box bg="white" w="650px" h="700px" mx="auto" mt={10} borderRadius="10px" shadow="md">
         <Center>
           <Image
-            my={6}
+            my={8}
             boxSize="160px"
             borderRadius="full"
             src={
@@ -42,7 +42,7 @@ export const UserProfileCard: FC = memo(() => {
                 </Tr>
                 <Tr>
                   <Td>年齢</Td>
-                  <Td>{`${authUser.age}歳`}</Td>
+                  <Td>{authUser.age}</Td>
                   <Td fontSize="sm" fontWeight="bold">
                     非公開
                   </Td>

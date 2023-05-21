@@ -3,10 +3,12 @@ import { useNavigate } from 'react-router-dom';
 import { Box, Flex, Heading, useDisclosure } from '@chakra-ui/react';
 import { MenuIconButton } from '../Atoms/button/MenuIconButton';
 import { MenuDrawer } from '../molecules/MenuDrawer';
+import { useLogout } from '../../hooks/useLogout';
 
 export const Header: FC = memo(() => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const navigate = useNavigate();
+  const { logout } = useLogout();
   return (
     <>
       <Flex
@@ -36,13 +38,18 @@ export const Header: FC = memo(() => {
           _hover={{ cursor: 'pointer' }}
         >
           <Box pr={4} onClick={() => navigate('/')} _hover={{ color: 'gray.300' }}>
-            HOME
+            MATCH
           </Box>
           <Box pr={4} onClick={() => navigate('/search')} _hover={{ color: 'gray.300' }}>
             SEARCH
           </Box>
           <Box pr={4} onClick={() => navigate('/myProfile')} _hover={{ color: 'gray.300' }}>
-            MyProfile
+            PROFILE
+          </Box>
+
+          {/* 簡易的なログアウト */}
+          <Box pr={4} onClick={() => logout()} _hover={{ color: 'gray.300' }}>
+            LOGOUT
           </Box>
         </Flex>
         <MenuIconButton onOpen={onOpen} />

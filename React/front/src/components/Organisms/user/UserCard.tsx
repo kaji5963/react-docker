@@ -4,7 +4,7 @@ import { FC, memo } from 'react';
 type Props = {
   imageUrl: string;
   userName: string;
-  age: number;
+  age: string;
 };
 
 export const UserCard: FC<Props> = memo(({ imageUrl, userName, age }) => {
@@ -34,7 +34,7 @@ export const UserCard: FC<Props> = memo(({ imageUrl, userName, age }) => {
           {userName}
         </Text>
         <Text fontSize="sm" color="gray">
-          {`${age}歳`}
+          {age}
         </Text>
       </Stack>
     </Box>

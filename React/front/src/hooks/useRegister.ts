@@ -26,7 +26,7 @@ export const useRegister = () => {
       .then((res) => {
         showMessage({ title: '新規登録に成功しました', status: 'success' });
         setAuthUser(res.data);
-        navigate('/');
+        navigate('/match');
       })
       .catch(() => {
         showMessage({ title: '新規登録できませんでした', status: 'error' });

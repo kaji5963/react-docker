@@ -37,7 +37,7 @@ export const Header: FC = memo(() => {
           display={{ base: 'none', md: 'flex' }}
           _hover={{ cursor: 'pointer' }}
         >
-          <Box pr={4} onClick={() => navigate('/')} _hover={{ color: 'gray.300' }}>
+          <Box pr={4} onClick={() => navigate('/match')} _hover={{ color: 'gray.300' }}>
             MATCH
           </Box>
           <Box pr={4} onClick={() => navigate('/search')} _hover={{ color: 'gray.300' }}>

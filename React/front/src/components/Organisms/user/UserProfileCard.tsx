@@ -30,38 +30,42 @@ export const UserProfileCard: FC = memo(() => {
               <Tbody>
                 <Tr>
                   <Td>ユーザーID</Td>
-                  <Td>{authUser.id}</Td>
+                  <Td>{authUser.id === null ? 'データなし' : authUser.id}</Td>
                   <Td></Td>
                 </Tr>
                 <Tr>
                   <Td>ユーザー名</Td>
-                  <Td>{authUser.name}</Td>
+                  <Td>{authUser.name === '' ? 'データなし' : authUser.name}</Td>
                   <Td fontSize="sm" fontWeight="bold" color="red.500">
                     公開
                   </Td>
                 </Tr>
                 <Tr>
                   <Td>年齢</Td>
-                  <Td>{authUser.age}</Td>
+                  <Td>{authUser.age === '' ? 'データなし' : authUser.age}</Td>
                   <Td fontSize="sm" fontWeight="bold">
                     非公開
                   </Td>
                 </Tr>
                 <Tr>
                   <Td>Email</Td>
-                  <Td>{authUser.email}</Td>
+                  <Td>{authUser.email === '' ? 'データなし' : authUser.email}</Td>
                   <Td fontSize="sm" fontWeight="bold">
                     非公開
                   </Td>
                 </Tr>
                 <Tr>
                   <Td>作成日時</Td>
-                  <Td>{newDate(authUser.created_at)}</Td>
+                  <Td>
+                    {authUser.created_at === '' ? 'データなし' : newDate(authUser.created_at)}
+                  </Td>
                   <Td></Td>
                 </Tr>
                 <Tr>
                   <Td>更新日時</Td>
-                  <Td>{newDate(authUser.updated_at)}</Td>
+                  <Td>
+                    {authUser.updated_at === '' ? 'データなし' : newDate(authUser.updated_at)}
+                  </Td>
                   <Td></Td>
                 </Tr>
               </Tbody>

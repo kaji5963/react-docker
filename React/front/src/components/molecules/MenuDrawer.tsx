@@ -10,7 +10,7 @@ type Props = {
 
 export const MenuDrawer: FC<Props> = memo(({ onClose, isOpen, navigate }) => {
   const homeNavigate = () => {
-    navigate('/');
+    navigate('/match');
     onClose();
   };
 

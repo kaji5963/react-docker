@@ -1,26 +1,20 @@
-import { useCallback, useState } from 'react';
+import { useCallback } from 'react';
 import { User } from '../types/user/User';
+import { Login } from '../types/auth/Login';
 import { useNavigate } from 'react-router-dom';
 import { useMessage } from './useMessage';
-import { useSetRecoilState } from 'recoil';
 import { authUserAtom } from '../global/atoms';
 
 import axios from 'axios';
-
-type Props = {
-  email: string;
-  password: string;
-};
+import { useSetRecoilState } from 'recoil';
 
 export const useLogin = () => {
   const setAuthUser = useSetRecoilState(authUserAtom);
-  const [loading, setLoading] = useState<boolean>();
-  const { showMessage } = useMessage();
   const navigate = useNavigate();
+  const { showMessage } = useMessage();
 
-  const login = useCallback(({ email, password }: Props) => {
-    setLoading(true);
-    const body = { email: email, password: password };
+  const login = useCallback((loginUser: Login) => {
+    const body = { email: loginUser.email, password: loginUser.password };
 
     axios
       .post<User>('http://localhost:8000/api/login/', body)
@@ -31,11 +25,8 @@ export const useLogin = () => {
       })
       .catch(() => {
         showMessage({ title: 'ログインできませんでした', status: 'error' });
-      })
-      .finally(() => {
-        setLoading(false);
       });
   }, []);
 
-  return { login, loading };
+  return { login };
 };

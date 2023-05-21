@@ -1,7 +1,7 @@
 export type User = {
-  id: number;
+  id: number | null;
   name: string;
-  age: number;
+  age: string;
   imageUrl: string;
   email: string;
   is_admin: boolean;

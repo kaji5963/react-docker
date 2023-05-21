@@ -31,7 +31,7 @@ export const MenuDrawer: FC<Props> = memo(({ onClose, isOpen, navigate }) => {
           <DrawerContent>
             <DrawerBody p={0} bg="gray.100">
               <Button w="100%" onClick={homeNavigate}>
-                HOME
+                MATCH
               </Button>
               <Button w="100%" onClick={searchNavigate}>
                 SEARCH

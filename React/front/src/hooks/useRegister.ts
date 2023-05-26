@@ -8,15 +8,21 @@ import { authUserAtom } from '../global/atoms';
 import axios from 'axios';
 import { useSetRecoilState } from 'recoil';
 
+type Props = {
+  registerUser: Register;
+  downloadFile: string;
+};
+
 export const useRegister = () => {
   const setAuthUser = useSetRecoilState(authUserAtom);
   const navigate = useNavigate();
   const { showMessage } = useMessage();
 
-  const register = useCallback((registerUser: Register) => {
+  const register = useCallback(({ registerUser, downloadFile }: Props) => {
     const body = {
       name: registerUser.name,
       age: registerUser.age,
+      imageUrl: downloadFile,
       email: registerUser.email,
       password: registerUser.password,
     };

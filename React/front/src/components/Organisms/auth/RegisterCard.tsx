@@ -1,13 +1,15 @@
 import { FC, memo, useState } from 'react';
-import { Box, Divider, Flex, Heading, Stack } from '@chakra-ui/react';
+import { Box, Center, Divider, Flex, Heading, Image, Input, Stack } from '@chakra-ui/react';
 import { PrimaryInput } from '../../Atoms/input/PrimaryInput';
 import { PrimaryButton } from '../../Atoms/button/PrimaryButton';
 import { AgeSelect } from '../../Atoms/select/AgeSelect';
 import { useRegister } from '../../../hooks/useRegister';
 import { Register } from '../../../types/auth/Register';
+import { useFileUpload } from '../../../hooks/useFileUpload';
 
 export const RegisterCard: FC = memo(() => {
   const { register } = useRegister();
+  const { fileUpload, downloadFile } = useFileUpload();
   const [registerUser, setRegisterUser] = useState<Register>({
     name: '',
     age: '',
@@ -22,7 +24,26 @@ export const RegisterCard: FC = memo(() => {
           Register
         </Heading>
         <Divider my={2} />
-        <Stack spacing={6} px={8} py={4}>
+
+        <Stack spacing={6} px={4} py={4}>
+          <Center>
+            <Image
+              boxSize="80px"
+              borderRadius="full"
+              src={
+                downloadFile === ''
+                  ? 'https://1.bp.blogspot.com/-D2I7Z7-HLGU/Xlyf7OYUi8I/AAAAAAABXq4/jZ0035aDGiE5dP3WiYhlSqhhMgGy8p7zACNcBGAsYHQ/s1600/no_image_square.jpg'
+                  : downloadFile
+              }
+            />
+          </Center>
+          <Input
+            border="none"
+            type="file"
+            accept=".jpg, .jpeg, .png"
+            onChange={(e) => fileUpload(e)}
+          />
+
           <PrimaryInput
             bg="gray.100"
             placeholder="name"
@@ -46,7 +67,9 @@ export const RegisterCard: FC = memo(() => {
             onChange={(e) => setRegisterUser({ ...registerUser, password: e.target.value })}
           />
 
-          <PrimaryButton onClick={() => register(registerUser)}>register</PrimaryButton>
+          <PrimaryButton onClick={() => register({ registerUser, downloadFile })}>
+            register
+          </PrimaryButton>
         </Stack>
       </Box>
     </Flex>

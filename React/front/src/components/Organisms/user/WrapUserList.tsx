@@ -12,8 +12,8 @@ export const WrapUserList: FC<Props> = memo(({ users }) => {
     <Wrap p={{ base: 4, md: 6 }} spacing={5} justify="center">
       {users.map((user) => {
         return (
-          <WrapItem key={user.id}>
-            <UserCard imageUrl={user.imageUrl} userName={user.name} age={user.age} />
+          <WrapItem key={user.api_token}>
+            <UserCard user={user} />
           </WrapItem>
         );
       })}

@@ -17,7 +17,7 @@ export const useLogout = () => {
       imageUrl: '',
       email: '',
       is_admin: false,
-      token: '',
+      api_token: '',
       created_at: '',
       updated_at: '',
     });

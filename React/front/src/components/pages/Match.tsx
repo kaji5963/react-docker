@@ -10,5 +10,5 @@ export const Match: FC = memo(() => {
     getUsers();
   }, []);
 
-  return <>{loading ? <LoadingSpinner /> : <WrapUserList users={users} />}</>;
+  return <>{loading ? <LoadingSpinner h="100vh" /> : <WrapUserList users={users} />}</>;
 });

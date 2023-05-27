@@ -3,12 +3,13 @@ import { Select } from '@chakra-ui/react';
 import { ageData } from '../../../data/ageData';
 
 type Props = {
-  onChange: React.ChangeEventHandler<HTMLSelectElement> | undefined;
+  onChange: React.ChangeEventHandler<HTMLSelectElement>;
+  width?: string;
 };
 
-export const AgeSelect: FC<Props> = memo(({ onChange }) => {
+export const AgeSelect: FC<Props> = memo(({ onChange, width }) => {
   return (
-    <Select bg="gray.100" placeholder="age" onChange={onChange}>
+    <Select width={width} bg="gray.100" placeholder="age" onChange={onChange}>
       {ageData().map((age) => {
         return (
           <option key={age.value} value={age.value}>

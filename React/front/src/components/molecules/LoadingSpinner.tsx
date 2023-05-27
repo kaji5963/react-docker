@@ -1,9 +1,13 @@
 import { memo } from 'react';
 import { Center, Spinner } from '@chakra-ui/react';
 
-export const LoadingSpinner = memo(() => {
+type Props = {
+  h?: string;
+};
+
+export const LoadingSpinner = memo(({ h }: Props) => {
   return (
-    <Center h="100vh">
+    <Center h={h}>
       <Spinner />
     </Center>
   );

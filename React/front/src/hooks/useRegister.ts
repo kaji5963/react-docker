@@ -11,6 +11,7 @@ import { useSetRecoilState } from 'recoil';
 type Props = {
   registerUser: Register;
   downloadFile: string;
+  selectSex: string;
 };
 
 export const useRegister = () => {
@@ -18,10 +19,11 @@ export const useRegister = () => {
   const navigate = useNavigate();
   const { showMessage } = useMessage();
 
-  const register = useCallback(({ registerUser, downloadFile }: Props) => {
+  const register = useCallback(({ registerUser, downloadFile, selectSex }: Props) => {
     const body = {
       name: registerUser.name,
       age: registerUser.age,
+      sex: selectSex,
       imageUrl: downloadFile,
       email: registerUser.email,
       password: registerUser.password,

@@ -3,7 +3,7 @@ import { Select } from '@chakra-ui/react';
 import { ageData } from '../../../data/ageData';
 
 type Props = {
-  onChange: React.ChangeEventHandler<HTMLSelectElement>;
+  onChange: (e: any) => void;
   width?: string;
 };
 

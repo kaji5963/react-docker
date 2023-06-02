@@ -7,6 +7,7 @@ import { Search } from '../components/pages/Search';
 import { MyProfile } from '../components/pages/MyProfile';
 import { NotFound } from '../components/pages/NotFound';
 import { HeaderLayout } from '../components/templates/HeaderLayout';
+import { EditProfile } from '../components/pages/EditProfile';
 
 export const Router = () => {
   return (
@@ -38,6 +39,16 @@ export const Router = () => {
           </HeaderLayout>
         }
       />
+
+      <Route
+        path="/myProfile/edit/:id"
+        element={
+          <HeaderLayout>
+            <EditProfile />
+          </HeaderLayout>
+        }
+      />
+
       <Route
         path="*"
         element={

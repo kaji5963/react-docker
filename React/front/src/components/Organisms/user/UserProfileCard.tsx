@@ -12,15 +12,18 @@ import {
   Tr,
 } from '@chakra-ui/react';
 import { useFormatDate } from '../../../hooks/useFormatDate';
-import { useRecoilValue } from 'recoil';
-import { authUserAtom } from '../../../global/atoms';
 import { PrimaryButton } from '../../Atoms/button/PrimaryButton';
 import { useNavigate } from 'react-router-dom';
+import { noImageUrl } from '../../../data/noImageUrl';
+import { User } from '../../../types/user/User';
 
-export const UserProfileCard: FC = memo(() => {
+type Props = {
+  authUser: User;
+};
+
+export const UserProfileCard: FC<Props> = memo(({ authUser }) => {
   const { newDate } = useFormatDate();
   const navigate = useNavigate();
-  const authUser = useRecoilValue(authUserAtom);
 
   return (
     <>
@@ -32,11 +35,7 @@ export const UserProfileCard: FC = memo(() => {
               mt={2}
               boxSize="160px"
               borderRadius="full"
-              src={
-                authUser.imageUrl === ''
-                  ? 'https://1.bp.blogspot.com/-D2I7Z7-HLGU/Xlyf7OYUi8I/AAAAAAABXq4/jZ0035aDGiE5dP3WiYhlSqhhMgGy8p7zACNcBGAsYHQ/s1600/no_image_square.jpg'
-                  : authUser.imageUrl
-              }
+              src={authUser.imageUrl === '' ? noImageUrl : authUser.imageUrl}
               alt={authUser.name}
             />
           </Box>

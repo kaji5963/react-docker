@@ -1,22 +1,38 @@
 import { useCallback, useState } from 'react';
 import { User } from '../types/user/User';
 import { apiUrl } from '../api/apiUrl';
-import { useRecoilState } from 'recoil';
-import { authUserAtom } from '../global/atoms';
-
-import axios from 'axios';
 import { useMessage } from './useMessage';
 
+import axios from 'axios';
+import { useLocation } from 'react-router-dom';
+
 export const useGetAuthUser = () => {
+  const location = useLocation();
   const { showMessage } = useMessage();
-  const [authUser, setAuthUser] = useRecoilState(authUserAtom);
   const [loading, setLoading] = useState<boolean>(false);
-  const token = authUser.api_token;
+  const [authUser, setAuthUser] = useState<User>({
+    id: null,
+    name: '',
+    age: '',
+    sex: '',
+    blood_type: '',
+    address: '',
+    business: '',
+    hobby: '',
+    introduction: '',
+    imageUrl: '',
+    email: '',
+    is_admin: false,
+    release: false,
+    api_token: '',
+    created_at: '',
+    updated_at: '',
+  });
 
   const getAuthUser = useCallback(() => {
     setLoading(true);
     axios
-      .get<User>(`${apiUrl}/myProfile/?api_token=${token}`)
+      .get<User>(`${apiUrl}/myProfile${location.search}`)
       .then((res) => {
         setAuthUser(res.data);
       })
@@ -28,5 +44,5 @@ export const useGetAuthUser = () => {
       });
   }, []);
 
-  return { getAuthUser, loading };
+  return { getAuthUser, loading, authUser };
 };

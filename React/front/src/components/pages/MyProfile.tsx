@@ -4,11 +4,11 @@ import { LoadingSpinner } from '../molecules/LoadingSpinner';
 import { UserProfileCard } from '../Organisms/user/UserProfileCard';
 
 export const MyProfile: FC = memo(() => {
-  const { getAuthUser, loading } = useGetAuthUser();
+  const { getAuthUser, loading, authUser } = useGetAuthUser();
 
   useEffect(() => {
     getAuthUser();
   }, []);
 
-  return <>{loading ? <LoadingSpinner h="100vh" /> : <UserProfileCard />}</>;
+  return <>{loading ? <LoadingSpinner h="100vh" /> : <UserProfileCard authUser={authUser} />}</>;
 });

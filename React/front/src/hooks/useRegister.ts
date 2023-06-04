@@ -4,6 +4,7 @@ import { Register } from '../types/auth/Register';
 import { useMessage } from './useMessage';
 import { useNavigate } from 'react-router-dom';
 import { authUserAtom } from '../global/atoms';
+import { apiUrl } from '../api/apiUrl';
 
 import axios from 'axios';
 import { useSetRecoilState } from 'recoil';
@@ -30,7 +31,7 @@ export const useRegister = () => {
     };
 
     axios
-      .post<User>('http://localhost:8000/api/register/', body)
+      .post<User>(`${apiUrl}/register/`, body)
       .then((res) => {
         showMessage({ title: '新規登録に成功しました', status: 'success' });
         setAuthUser(res.data);

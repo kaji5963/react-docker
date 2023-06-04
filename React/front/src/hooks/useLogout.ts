@@ -28,7 +28,7 @@ export const useLogout = () => {
       created_at: '',
       updated_at: '',
     });
-    navigate('/register');
+    navigate('/');
   }, []);
 
   return { logout };

@@ -4,6 +4,7 @@ import { Login } from '../types/auth/Login';
 import { useNavigate } from 'react-router-dom';
 import { useMessage } from './useMessage';
 import { authUserAtom } from '../global/atoms';
+import { apiUrl } from '../api/apiUrl';
 
 import axios from 'axios';
 import { useSetRecoilState } from 'recoil';
@@ -15,9 +16,8 @@ export const useLogin = () => {
 
   const login = useCallback((loginUser: Login) => {
     const body = { email: loginUser.email, password: loginUser.password };
-
     axios
-      .post<User>('http://localhost:8000/api/login/', body)
+      .post<User>(`${apiUrl}/login/`, body)
       .then((res) => {
         showMessage({ title: 'ログインに成功しました', status: 'success' });
         setAuthUser(res.data);

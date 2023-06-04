@@ -1,7 +1,6 @@
 import { FC, memo } from 'react';
 import {
   Box,
-  Center,
   Flex,
   Heading,
   Image,

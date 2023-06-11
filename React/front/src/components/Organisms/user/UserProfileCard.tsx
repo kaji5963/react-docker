@@ -1,6 +1,7 @@
 import { FC, memo } from 'react';
 import {
   Box,
+  Center,
   Flex,
   Heading,
   Image,
@@ -16,6 +17,7 @@ import { PrimaryButton } from '../../Atoms/button/PrimaryButton';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { noImageUrl } from '../../../data/noImageUrl';
 import { User } from '../../../types/user/User';
+import { useDeleteUser } from '../../../hooks/useDeleteUser';
 
 type Props = {
   authUser: User;
@@ -23,6 +25,7 @@ type Props = {
 
 export const UserProfileCard: FC<Props> = memo(({ authUser }) => {
   const { newDate } = useFormatDate();
+  const { deleteUser } = useDeleteUser();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -187,6 +190,12 @@ export const UserProfileCard: FC<Props> = memo(({ authUser }) => {
             </Table>
           </TableContainer>
         </Flex>
+
+        <Center mt={12}>
+          <PrimaryButton onClick={() => deleteUser(authUser.id)} colorScheme="red" w="100px" mr={8}>
+            ユーザー削除
+          </PrimaryButton>
+        </Center>
       </Box>
     </>
   );

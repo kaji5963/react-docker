@@ -7,6 +7,7 @@ import { useRegister } from '../../../hooks/useRegister';
 import { Register } from '../../../types/auth/Register';
 import { useFileUpload } from '../../../hooks/useFileUpload';
 import { SexRadio } from '../../Atoms/radio/SexRadio';
+import { noImageUrl } from '../../../data/noImageUrl';
 
 export const RegisterCard: FC = memo(() => {
   const { register } = useRegister();
@@ -32,11 +33,7 @@ export const RegisterCard: FC = memo(() => {
             <Image
               boxSize="80px"
               borderRadius="full"
-              src={
-                downloadFile === ''
-                  ? 'https://1.bp.blogspot.com/-D2I7Z7-HLGU/Xlyf7OYUi8I/AAAAAAABXq4/jZ0035aDGiE5dP3WiYhlSqhhMgGy8p7zACNcBGAsYHQ/s1600/no_image_square.jpg'
-                  : downloadFile
-              }
+              src={downloadFile === '' ? noImageUrl : downloadFile}
             />
           </Center>
           <Input

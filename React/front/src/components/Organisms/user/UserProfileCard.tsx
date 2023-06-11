@@ -13,7 +13,7 @@ import {
 } from '@chakra-ui/react';
 import { useFormatDate } from '../../../hooks/useFormatDate';
 import { PrimaryButton } from '../../Atoms/button/PrimaryButton';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { noImageUrl } from '../../../data/noImageUrl';
 import { User } from '../../../types/user/User';
 
@@ -24,6 +24,7 @@ type Props = {
 export const UserProfileCard: FC<Props> = memo(({ authUser }) => {
   const { newDate } = useFormatDate();
   const navigate = useNavigate();
+  const location = useLocation();
 
   return (
     <>
@@ -61,7 +62,9 @@ export const UserProfileCard: FC<Props> = memo(({ authUser }) => {
         </Flex>
 
         <Box textAlign="end" my={6} mr={20}>
-          <PrimaryButton onClick={() => navigate(`/myProfile/edit/${authUser.api_token}`)}>
+          <PrimaryButton
+            onClick={() => navigate(`/myProfile/edit${location.search}`, { state: authUser })}
+          >
             プロフィール編集
           </PrimaryButton>
         </Box>
@@ -74,7 +77,7 @@ export const UserProfileCard: FC<Props> = memo(({ authUser }) => {
                   <Td textAlign="center" bg="gray.200">
                     ID
                   </Td>
-                  <Td>{authUser.id === null ? '' : authUser.id}</Td>
+                  <Td>{authUser.id === null ? null : authUser.id}</Td>
                   <Td></Td>
                   <Td></Td>
                   <Td></Td>

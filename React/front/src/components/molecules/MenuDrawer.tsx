@@ -1,6 +1,7 @@
 import { FC, memo } from 'react';
 import { Button, Drawer, DrawerBody, DrawerContent, DrawerOverlay } from '@chakra-ui/react';
-import { NavigateFunction } from 'react-router-dom';
+
+import { NavigateFunction, useLocation } from 'react-router-dom';
 
 type Props = {
   onClose: () => void;
@@ -9,18 +10,20 @@ type Props = {
 };
 
 export const MenuDrawer: FC<Props> = memo(({ onClose, isOpen, navigate }) => {
+  const location = useLocation(); // location.search = ？api_token=""
+
   const homeNavigate = () => {
-    navigate('/match');
+    navigate(`/match${location.search}`);
     onClose();
   };
 
   const searchNavigate = () => {
-    navigate('/search');
+    navigate(`/search${location.search}`);
     onClose();
   };
 
   const myProfileNavigate = () => {
-    navigate('/myProfile');
+    navigate(`/myProfile${location.search}`);
     onClose();
   };
 

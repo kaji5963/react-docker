@@ -41,7 +41,7 @@ export const Router = () => {
       />
 
       <Route
-        path="/myProfile/edit/:id"
+        path="/myProfile/edit"
         element={
           <HeaderLayout>
             <EditProfile />

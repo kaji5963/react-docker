@@ -14,14 +14,21 @@ export const useLogout = () => {
       id: null,
       name: '',
       age: '',
+      sex: '',
+      blood_type: '',
+      address: '',
+      business: '',
+      hobby: '',
+      introduction: '',
       imageUrl: '',
       email: '',
       is_admin: false,
+      release: false,
       api_token: '',
       created_at: '',
       updated_at: '',
     });
-    navigate('/register');
+    navigate('/');
   }, []);
 
   return { logout };

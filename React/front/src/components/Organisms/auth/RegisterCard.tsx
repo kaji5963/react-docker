@@ -6,10 +6,13 @@ import { AgeSelect } from '../../Atoms/select/AgeSelect';
 import { useRegister } from '../../../hooks/useRegister';
 import { Register } from '../../../types/auth/Register';
 import { useFileUpload } from '../../../hooks/useFileUpload';
+import { SexRadio } from '../../Atoms/radio/SexRadio';
+import { noImageUrl } from '../../../data/noImageUrl';
 
 export const RegisterCard: FC = memo(() => {
   const { register } = useRegister();
   const { fileUpload, downloadFile } = useFileUpload();
+  const [selectSex, setSelectSex] = useState<string>('');
   const [registerUser, setRegisterUser] = useState<Register>({
     name: '',
     age: '',
@@ -30,28 +33,32 @@ export const RegisterCard: FC = memo(() => {
             <Image
               boxSize="80px"
               borderRadius="full"
-              src={
-                downloadFile === ''
-                  ? 'https://1.bp.blogspot.com/-D2I7Z7-HLGU/Xlyf7OYUi8I/AAAAAAABXq4/jZ0035aDGiE5dP3WiYhlSqhhMgGy8p7zACNcBGAsYHQ/s1600/no_image_square.jpg'
-                  : downloadFile
-              }
+              src={downloadFile === '' ? noImageUrl : downloadFile}
             />
           </Center>
           <Input
             border="none"
             type="file"
             accept=".jpg, .jpeg, .png"
-            onChange={(e) => fileUpload(e)}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => fileUpload(e)}
           />
 
           <PrimaryInput
             bg="gray.100"
             placeholder="name"
             value={registerUser.name}
-            onChange={(e) => setRegisterUser({ ...registerUser, name: e.target.value })}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setRegisterUser({ ...registerUser, name: e.target.value })
+            }
           />
 
-          <AgeSelect onChange={(e) => setRegisterUser({ ...registerUser, age: e.target.value })} />
+          <AgeSelect
+            onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+              setRegisterUser({ ...registerUser, age: e.target.value })
+            }
+          />
+
+          <SexRadio onChange={setSelectSex} value={selectSex} />
 
           <PrimaryInput
             bg="gray.100"
@@ -64,10 +71,12 @@ export const RegisterCard: FC = memo(() => {
             bg="gray.100"
             placeholder="password"
             value={registerUser.password}
-            onChange={(e) => setRegisterUser({ ...registerUser, password: e.target.value })}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setRegisterUser({ ...registerUser, password: e.target.value })
+            }
           />
 
-          <PrimaryButton onClick={() => register({ registerUser, downloadFile })}>
+          <PrimaryButton onClick={() => register({ registerUser, downloadFile, selectSex })}>
             register
           </PrimaryButton>
         </Stack>

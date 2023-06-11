@@ -5,7 +5,7 @@ type Props = {
   bg?: string;
   placeholder?: string;
   value: string | number;
-  onChange: (e: any) => void;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 export const PrimaryInput: FC<Props> = memo(({ bg = '', placeholder = '', value, onChange }) => {

@@ -2,13 +2,14 @@ import { FC, memo } from 'react';
 import { Box, Image, Stack, Text, useDisclosure } from '@chakra-ui/react';
 import { User } from '../../../types/user/User';
 import { ProfileModal } from '../../molecules/ProfileModal';
-
+import { noImageUrl } from '../../../data/noImageUrl';
 type Props = {
   user: User;
 };
 
 export const UserCard: FC<Props> = memo(({ user }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
+
   return (
     <>
       <Box
@@ -25,11 +26,7 @@ export const UserCard: FC<Props> = memo(({ user }) => {
           <Image
             boxSize="160px"
             borderRadius="full"
-            src={
-              user.imageUrl === ''
-                ? 'https://1.bp.blogspot.com/-D2I7Z7-HLGU/Xlyf7OYUi8I/AAAAAAABXq4/jZ0035aDGiE5dP3WiYhlSqhhMgGy8p7zACNcBGAsYHQ/s1600/no_image_square.jpg'
-                : user.imageUrl
-            }
+            src={user.imageUrl === '' ? noImageUrl : user.imageUrl}
             alt={user.name}
             m="auto"
           />

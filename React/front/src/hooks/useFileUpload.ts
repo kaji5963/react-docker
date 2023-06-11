@@ -23,5 +23,5 @@ export const useFileUpload = () => {
     }
   }, []);
 
-  return { fileUpload, downloadFile };
+  return { fileUpload, downloadFile, setDownloadFile };
 };

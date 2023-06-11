@@ -1,4 +1,4 @@
-export type User = {
+export type EditUser = {
   id: number | null;
   name: string;
   age: string;
@@ -9,10 +9,4 @@ export type User = {
   hobby: string;
   introduction: string;
   imageUrl: string;
-  email: string;
-  is_admin: boolean;
-  release: boolean;
-  api_token: string;
-  created_at: string;
-  updated_at: string;
 };

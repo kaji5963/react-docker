@@ -1,6 +1,7 @@
 import { useCallback, useState } from 'react';
 import { User } from '../types/user/User';
 import { useMessage } from './useMessage';
+import { apiUrl } from '../api/apiUrl';
 
 import axios from 'axios';
 
@@ -19,7 +20,7 @@ export const useSearchUsers = () => {
     const body = { name: params.name, age: params.age };
 
     axios
-      .post<User[]>('http://localhost:8000/api/search/', body)
+      .post<User[]>(`${apiUrl}/search/`, body)
       .then((res) => {
         if (res.data.length === 0) {
           showMessage({ title: '条件に一致したユーザーはいません', status: 'warning' });

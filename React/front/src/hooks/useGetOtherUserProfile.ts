@@ -1,16 +1,12 @@
+import axios from 'axios';
 import { useCallback, useState } from 'react';
-import { User } from '../types/user/User';
 import { apiUrl } from '../api/apiUrl';
+import { User } from '../types/user/User';
 import { useMessage } from './useMessage';
 
-import axios from 'axios';
-import { useLocation } from 'react-router-dom';
-
-export const useGetAuthUser = () => {
-  const location = useLocation();
-  const { showMessage } = useMessage();
+export const useGetOtherUserProfile = () => {
   const [loading, setLoading] = useState<boolean>(false);
-  const [authUser, setAuthUser] = useState<User>({
+  const [otherUser, setOtherUser] = useState<User>({
     id: null,
     name: '',
     age: '',
@@ -27,21 +23,23 @@ export const useGetAuthUser = () => {
     created_at: '',
     updated_at: '',
   });
-
-  const getAuthUser = useCallback(() => {
+  const { showMessage } = useMessage();
+  const otherUserProfile = useCallback((id: number | null) => {
     setLoading(true);
     axios
-      .get<User>(`${apiUrl}/myProfile${location.search}`)
+      .get<User>(`${apiUrl}/otherProfile/${id}`)
       .then((res) => {
-        setAuthUser(res.data);
+        console.log(res.data);
+
+        setOtherUser(res.data);
       })
       .catch(() => {
-        showMessage({ title: 'ログインユーザー取得に失敗しました', status: 'error' });
+        showMessage({ title: 'ユーザー情報取得に失敗しました', status: 'error' });
       })
       .finally(() => {
         setLoading(false);
       });
   }, []);
 
-  return { getAuthUser, loading, authUser };
+  return { otherUserProfile };
 };

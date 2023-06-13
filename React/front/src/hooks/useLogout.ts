@@ -23,7 +23,6 @@ export const useLogout = () => {
       imageUrl: '',
       email: '',
       is_admin: false,
-      release: false,
       api_token: '',
       created_at: '',
       updated_at: '',

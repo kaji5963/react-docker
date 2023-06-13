@@ -11,7 +11,6 @@ export type User = {
   imageUrl: string;
   email: string;
   is_admin: boolean;
-  release: boolean;
   api_token: string;
   created_at: string;
   updated_at: string;
